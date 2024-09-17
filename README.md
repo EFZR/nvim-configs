@@ -1,2 +1,0 @@
-# 💤 LazyVim
-Learning NVIM ✨️✨️
