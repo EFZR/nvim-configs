@@ -1,3 +1,3 @@
 # NVIM Config
 
-Learning NVIM 👨‍💻
+Learning NVIM 👨‍💻🌐
