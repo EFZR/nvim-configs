@@ -4,4 +4,3 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
   desc = "Briefly highlight yanked text",
 })
-           
