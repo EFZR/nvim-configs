@@ -5,7 +5,7 @@ M.servers = {
 	"omnisharp",
 	"cssls",
 	"html",
-	"jsonls"
+	"jsonls",
 }
 
 M.parsers = {
@@ -19,12 +19,13 @@ M.parsers = {
 	"html",
 	"css",
 	"json",
-	"toml"
+	"toml",
 }
 
 M.fmtNLint = {
 	"prettier",
-	"stylua"
+	"stylua",
+	"csharpier",
 }
 
 return M

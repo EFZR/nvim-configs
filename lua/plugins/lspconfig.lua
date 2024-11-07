@@ -51,6 +51,10 @@ return {
         require("neodev").setup {}
       end
 
+			if server == "omnisharp" then
+				opts.cmd = { "OmniSharp", "--language-server" }
+			end
+
       lspconfig[server].setup(opts)
     end
 
