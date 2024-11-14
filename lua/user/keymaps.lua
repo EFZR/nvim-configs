@@ -26,5 +26,10 @@ keymap("n", "<C-Down>", ":resize +2<CR>", opts)
 keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
+-- Quit Nvim
+-- keymap("n", "<C-q>", function()
+-- 	vim.cmd.close()
+-- end, opts)
+
 -- Clear highlights
 keymap("n", "<leader>h", vim.cmd.nohlsearch, opts)

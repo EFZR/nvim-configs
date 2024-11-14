@@ -37,6 +37,15 @@ return {
 			enable_diagnostics = true,
 			open_files_do_not_replace_types = { "terminal", "trouble", "qf" },
 			sort_case_insensitive = false,
+			event_handlers = {
+				{
+					event = "file_opened",
+					handler = function()
+						--auto close
+						vim.cmd("Neotree close")
+					end,
+				},
+			},
 			default_component_configs = {
 				container = { enable_character_fade = true },
 				indent = {

@@ -1,6 +1,7 @@
 return {
-	"ellisonleao/gruvbox.nvim",
-	-- "Mofiqul/vscode.nvim",
+	"ellisonleao/gruvbox.nvim", --gruvbox
+	-- "Mofiqul/vscode.nvim",				--vscode
+	-- 'tomasiser/vim-code-dark',		--codedark
 	lazy = false,
 	priority = 100,
 	config = function()
