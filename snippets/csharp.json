@@ -1,0 +1,86 @@
+{
+	"Mediator Request": {
+		"prefix": "medreq",
+		"body": [
+			"using MediatR;",
+			"",
+			"namespace ${1:YourNamespace};",
+			"",
+			"public sealed record ${2:RequestName} : IRequest<${3:ResponseType}>",
+			"{",
+			"\t// Add any request properties here if needed",
+			"\t$0",
+			"}",
+			"",
+			"public sealed class ${2:RequestName}Handler : IRequestHandler<${2:RequestName}, ${3:ResponseType}>",
+			"{",
+			"\tpublic Task<${3:ResponseType}> Handle(${2:RequestName} request, CancellationToken cancellationToken)",
+			"\t{",
+			"\t\t// Implement request logic here",
+			"\t\tthrow new NotImplementedException();",
+			"\t}",
+			"}",
+			""
+		],
+		"description": "This snippet is used to create a MediatR request record and its corresponding handler."
+	},
+	"DTO Record with AutoMapper Profile": {
+		"prefix": "dtomap",
+		"body": [
+			"using AutoMapper;",
+			"",
+			"namespace ${2:YourNamespace.Response};",
+			"",
+			"public sealed record ${3:DTOName}()",
+			"{",
+			"\t// Add properties here",
+			"\t$0",
+			"",
+			"\tprivate class Mapping : Profile",
+			"\t{",
+			"\t\tpublic Mapping()",
+			"\t\t{",
+			"\t\t\tCreateMap<${4:SourceEntity}, ${3:DTOName}>()",
+			"\t\t\t\t// Configure mappings here",
+			"\t\t\t\t$5",
+			"\t\t\t\t.ReverseMap();",
+			"\t\t}",
+			"\t}",
+			"}",
+			""
+		],
+		"description": "This snippet generates a generic DTO record with an AutoMapper profile setup."
+	},
+	"DAO Record": {
+		"prefix": "dao",
+		"body": [
+			"namespace ${1:YourNamespace};",
+			"",
+			"public sealed record ${2:RecordName}",
+			"{",
+			"\t// Add properties here",
+			"\t$0",
+			"}",
+			""
+		],
+		"description": "This snippet generates a generic DAO record without predefined properties."
+	},
+	"FluentValidation Validator": {
+		"prefix": "validator",
+		"body": [
+			"using FluentValidation;",
+			"",
+			"namespace ${1:YourNamespace.Validators};",
+			"",
+			"public class ${2:ValidatorName} : AbstractValidator<${3:RequestType}>",
+			"{",
+			"\tpublic ${2:ValidatorName}()",
+			"\t{",
+			"\t\t// Add validation rules here",
+			"\t}",
+			"}",
+			""
+		],
+		"description": "This snippet generates a FluentValidation validator for a specified request type."
+	}
+}
