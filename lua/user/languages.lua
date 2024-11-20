@@ -28,4 +28,8 @@ M.fmtNLint = {
 	"csharpier",
 }
 
+M.debugger = {
+	"coreclr",
+}
+
 return M
