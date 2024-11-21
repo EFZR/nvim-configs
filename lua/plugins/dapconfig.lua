@@ -1,23 +1,30 @@
 return {
 	{
 		"mfussenegger/nvim-dap",
+
 		config = function()
 			local dap = require("dap")
+
 			dap.adapters.coreclr = {
 				type = "executable",
 				command = "netcoredbg",
 				args = { "--interpreter=vscode" },
 			}
+
 			dap.configurations.cs = {
 				{
 					type = "coreclr",
 					name = "launch - netcoredbg",
 					request = "launch",
 					program = function()
-						return vim.fn.input("path to dll", vim.fn.getcwd() .. "/bin/debug/", "file")
+						if vim.fn.confirm("Should I recompile first?", "&yes\n&no", 2) == 1 then
+							vim.g.dotnet_build_project()
+						end
+						return vim.g.dotnet_get_dll_path()
 					end,
 				},
 			}
+
 			vim.keymap.set("n", "<F5>", function()
 				dap.continue()
 			end)
