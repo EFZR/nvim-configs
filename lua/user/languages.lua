@@ -6,7 +6,7 @@ M.servers = {
 	"cssls",
 	"html",
 	"jsonls",
-	"marksman"
+	"marksman",
 }
 
 M.parsers = {
