@@ -10,8 +10,12 @@
 				"path": "./lua.json"
 			},
 			{
-				"language": "csharp",
-				"path": "./csharp.json"
+				"language": "cs",
+				"path": "./cs.json"
+			},
+			{
+				"language": "tsx",
+				"path": "./tsx.json"
 			}
 		]
 	}

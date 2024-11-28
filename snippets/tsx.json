@@ -1,0 +1,71 @@
+{
+	"Functional Component": {
+		"prefix": "rfc",
+		"body": [
+			"import React from 'react';",
+			"",
+			"const ${1:ComponentName} = (${2:props}) => {",
+			"    return (",
+			"        <div>",
+			"            ${3:/* JSX here */}",
+			"        </div>",
+			"    );",
+			"};",
+			"",
+			"export default ${1:ComponentName};"
+		],
+		"description": "Create a functional component in React."
+	},
+	"Redux Action Creator": {
+		"prefix": "action",
+		"body": [
+			"export const ${1:ACTION_NAME} = \"${2:action_type}\";",
+			"",
+			"export const ${3:actionCreatorName} = (${4:payload}) => ({",
+			"    type: ${1:ACTION_NAME},",
+			"    payload: ${4:payload},",
+			"});"
+		],
+		"description": "Create a Redux action creator."
+	},
+	"Redux Reducer": {
+		"prefix": "reducer",
+		"body": [
+			"import { ${1:ACTION_NAME} } from '${2:./actionFile}';",
+			"",
+			"const initialState = ${3:{}};",
+			"",
+			"export const ${4:reducerName} = (state = initialState, action) => {",
+			"    switch (action.type) {",
+			"        case ${1:ACTION_NAME}:",
+			"            return {",
+			"                ...state,",
+			"                ${5:/* updates */}",
+			"            };",
+			"        default:",
+			"            return state;",
+			"    }",
+			"};"
+		],
+		"description": "Create a Redux reducer."
+	},
+	"useState Hook": {
+		"prefix": "usestate",
+		"body": [
+			"const [${1:state}, set${2:State}] = React.useState(${3:initialValue});"
+		],
+		"description": "React useState hook."
+	},
+	"useEffect Hook": {
+		"prefix": "useeffect",
+		"body": [
+			"React.useEffect(() => {",
+			"    ${1:/* effect logic */}",
+			"    return () => {",
+			"        ${2:/* cleanup */}",
+			"    };",
+			"}, [${3:/* dependencies */}]);"
+		],
+		"description": "React useEffect hook."
+	}
+}
