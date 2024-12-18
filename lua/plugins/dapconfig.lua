@@ -16,12 +16,7 @@ return {
 					type = "coreclr",
 					name = "launch - netcoredbg",
 					request = "launch",
-					program = function()
-						if vim.fn.confirm("Should I recompile first?", "&yes\n&no", 2) == 1 then
-							vim.g.dotnet_build_project()
-						end
-						return vim.g.dotnet_get_dll_path()
-					end,
+					program = function() end,
 				},
 			}
 
