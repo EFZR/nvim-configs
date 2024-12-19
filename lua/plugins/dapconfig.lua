@@ -16,7 +16,9 @@ return {
 					type = "coreclr",
 					name = "launch - netcoredbg",
 					request = "launch",
-					program = function() end,
+					program = function()
+						return vim.fn.input("Path to dll", vim.fn.getcwd(), "file")
+					end,
 				},
 			}
 
