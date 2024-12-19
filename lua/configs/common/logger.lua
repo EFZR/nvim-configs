@@ -1,7 +1,12 @@
 local M = {}
 
 local function log(level, message, data)
-	local logger = require("structlog")
+	local logger = require("structlog").get_logger("my_logger")
+
+	if logger == nil then
+		return
+	end
+
 	logger:log(vim.log.levels[level] + 1, message, data)
 end
 

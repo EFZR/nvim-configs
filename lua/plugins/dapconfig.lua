@@ -17,7 +17,11 @@ return {
 					name = "launch - netcoredbg",
 					request = "launch",
 					program = function()
-						return vim.fn.input("Path to dll", vim.fn.getcwd(), "file")
+						if next(dap.sessions()) ~= nil then
+							dap.continue()
+							return
+						end
+						return require("configs.csharp.features.debugger").execute()
 					end,
 				},
 			}
