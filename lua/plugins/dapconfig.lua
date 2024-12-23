@@ -19,6 +19,7 @@ return {
 					name = "launch - netcoredbg",
 					request = "launch",
 					program = function()
+						-- TODO: Implement launch profile.
 						notify.info("Preparing debugger!")
 						local project_information =
 							require("configs.csharp.features.workspace-information").select_project()
