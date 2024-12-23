@@ -50,6 +50,12 @@ return {
 						return dll_path
 					end,
 				},
+				{
+					type = "coreclr",
+					name = "attach - netcoredbg",
+					request = "attach",
+					processId = require("dap.utils").pick_process,
+				},
 			}
 
 			vim.keymap.set("n", "<F5>", function()
