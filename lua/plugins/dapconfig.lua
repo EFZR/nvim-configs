@@ -4,6 +4,8 @@ return {
 
 		config = function()
 			local dap = require("dap")
+			local logger = require("configs.common.logger")
+			local notify = require("configs.common.notify")
 
 			dap.adapters.coreclr = {
 				type = "executable",
@@ -17,11 +19,34 @@ return {
 					name = "launch - netcoredbg",
 					request = "launch",
 					program = function()
-						if next(dap.sessions()) ~= nil then
-							dap.continue()
+						notify.info("Preparing debugger!")
+						local project_information =
+							require("configs.csharp.features.workspace-information").select_project()
+
+						if project_information == nil then
+							logger.error("No project selected", { feature = "debugger" })
 							return
 						end
-						return require("configs.csharp.features.debugger").execute()
+
+						local project_folder_path = vim.fn.fnamemodify(project_information.Path, ":h")
+
+						-- Dynamically find the .dll file
+						local dll_path = vim.fn.glob(
+							project_folder_path
+								.. "/bin/Debug/net*/"
+								.. vim.fn.fnamemodify(project_folder_path, ":t")
+								.. ".dll"
+						)
+
+						if dll_path == "" then
+							logger.error("No .dll file found in the project folder", { feature = "debugger" })
+							notify.error("No .dll file found. Make sure the project is built.")
+							return
+						end
+
+						logger.info("The Project path being run, " .. dll_path, { feature = "debugger" })
+
+						return dll_path
 					end,
 				},
 			}
