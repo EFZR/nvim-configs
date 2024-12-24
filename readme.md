@@ -1,4 +1,4 @@
-# Neovim Configurations
+# Neovim Configurations 👨‍💻
 
 Welcome to my Neovim configurations! 🎉
 
