@@ -49,7 +49,7 @@ return {
 
 			if server == "html" then
 				opts.cmd = { "vscode-html-language-server", "--stdio" }
-				opts.filetypes = { "html", "tsx" }
+				opts.filetypes = { "typescript", "typescriptreact", "typescript.tsx", "html" }
 			end
 
 			if server == "lua_ls" then
