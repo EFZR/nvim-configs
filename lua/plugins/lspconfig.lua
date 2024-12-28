@@ -47,6 +47,11 @@ return {
 				opts = vim.tbl_deep_extend("force", settings, opts)
 			end
 
+			if server == "html" then
+				opts.cmd = { "vscode-html-language-server", "--stdio" }
+				opts.filetypes = { "html", "tsx" }
+			end
+
 			if server == "lua_ls" then
 				require("neodev").setup({})
 			end

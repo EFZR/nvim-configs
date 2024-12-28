@@ -7,7 +7,7 @@
 			"const ${1:ComponentName} = (${2:props}) => {",
 			"    return (",
 			"        <div>",
-			"            ${3:/* JSX here */}",
+			"            ${3:/* TSX here */}",
 			"        </div>",
 			"    );",
 			"};",
