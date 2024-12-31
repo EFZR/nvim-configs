@@ -19,7 +19,7 @@ require("lazy").setup("plugins", {
 		notify = false,
 	},
 	install = {
-		colorscheme = { "vim" },
+		colorscheme = { "retrobox" },
 	},
 	ui = {
 		border = "rounded",
