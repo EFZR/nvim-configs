@@ -1,4 +1,5 @@
 vim.opt.backup = false -- creates a backup file
+vim.opt.relativenumber = true -- relative numbers active
 vim.opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
 vim.opt.ignorecase = true -- ignore case in search patterns
 vim.opt.smartcase = true -- smart case
