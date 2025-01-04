@@ -99,6 +99,18 @@ return {
 				opts.filetypes = { "cs", "vb", "csproj", "sln", "slnx", "props", "csx", "targets" }
 			end
 
+			if server == "nil_ls" then
+				opts.cmd = { "nil" }
+				opts.filetypes = { "nix" }
+				opts.settings = {
+					["nil"] = { -- Use "nil" here to match the expected server name.
+						formatting = {
+							command = { "nixfmt" }, -- Use the correct path/command for the formatter.
+						},
+					},
+				}
+			end
+
 			lspconfig[server].setup(opts)
 		end
 

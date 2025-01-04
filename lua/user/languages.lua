@@ -7,7 +7,7 @@ M.servers = {
 	"html",
 	"jsonls",
 	"marksman",
-	-- "nil_ls",
+	"nil_ls",
 }
 
 M.parsers = {
@@ -30,7 +30,7 @@ M.fmtNLint = {
 	"csharpier",
 	"markdownlint",
 	"eslint_d",
-	-- "nixpkgs-fmt",
+	"nixpkgs-fmt",
 }
 
 M.debugger = {
