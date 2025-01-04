@@ -29,6 +29,7 @@ M.fmtNLint = {
 	"stylua",
 	"csharpier",
 	"markdownlint",
+	"eslint_d",
 	-- "nixpkgs-fmt",
 }
 
