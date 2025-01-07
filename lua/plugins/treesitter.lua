@@ -6,8 +6,20 @@ return {
 		---@diagnostic disable-next-line: missing-fields
 		require("nvim-treesitter.configs").setup({
 			ensure_installed = require("user.languages").parsers,
-			highlight = { enable = true },
-			indent = { enable = true },
+			context_commentstring = {
+				enable = true,
+			},
+			highlight = {
+				enable = true,
+			},
+			incremental_selection = {
+				enable = true,
+			},
+			indent = {
+				enable = true,
+				disable = { "python" },
+				additional_vim_regex_highlighting = false,
+			},
 		})
 	end,
 }
