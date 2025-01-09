@@ -22,6 +22,7 @@ M.parsers = {
 	"css",
 	"json",
 	"toml",
+	"nix"
 }
 
 M.fmtNLint = {
