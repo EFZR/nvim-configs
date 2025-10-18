@@ -4,7 +4,7 @@ return {
 	opts = {
 		automatic_setup = true,
 		ensure_installed = require("user.languages").fmtNLint,
-		automatic_installation = true,
+		automatic_installation = false,
 	},
 	dependencies = {
 		{

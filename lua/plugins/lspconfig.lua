@@ -3,8 +3,6 @@ return {
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = "folke/neodev.nvim",
 	config = function()
-		local lspconfig = require("lspconfig")
-
 		-- diagnostic config
 		vim.diagnostic.config({
 			virtual_text = true,
@@ -111,7 +109,7 @@ return {
 				}
 			end
 
-			lspconfig[server].setup(opts)
+			vim.lsp.config(server, opts)
 		end
 
 		-- Ui stuff
@@ -142,7 +140,7 @@ return {
 		vim.diagnostic.config(default_diagnostic_config)
 
 		for _, sign in ipairs(vim.tbl_get(vim.diagnostic.config(), "signs", "values") or {}) do
-			vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = sign.name })
+			vim.api.nvim_set_hl(0, sign.name, { link = sign.name })
 		end
 
 		vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
