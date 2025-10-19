@@ -1,25 +1,59 @@
-vim.opt.backup = false -- creates a backup file
-vim.opt.relativenumber = true -- relative numbers active
-vim.opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
-vim.opt.ignorecase = true -- ignore case in search patterns
-vim.opt.smartcase = true -- smart case
-vim.opt.smartindent = true -- make indenting smarter again
-vim.opt.splitbelow = true -- force all horizontal splits to go below current window
-vim.opt.splitright = true -- force all vertical splits to go to the right of current window
-vim.opt.swapfile = false -- creates a swapfile
-vim.opt.termguicolors = true -- set term gui colors (most terminals support this)
-vim.opt.undofile = true -- enable persistent undo
-vim.opt.updatetime = 300 -- faster completion (4000ms default)
-vim.opt.writebackup = false -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
-vim.opt.shiftwidth = 4 -- the number of spaces inserted for each indentation
-vim.opt.tabstop = 4 -- insert 2 spaces for a tab
-vim.opt.cursorline = true -- highlight the current line
-vim.opt.number = true -- set numbered lines
-vim.opt.wrap = false -- display lines as one long line
-vim.opt.scrolloff = 8 -- minimal number of screen lines to keep above and below the cursor
-vim.opt.sidescrolloff = 8 -- minimal number of screen columns to keep to the left and right of the cursor if wrap is `false`
-vim.opt.wildmenu = true -- completion of commands
-vim.opt.wildignorecase = true -- case insensitive completion
-vim.opt.wildmode = "longest,full,full" -- how the completion is done
+-- Line numbers
+vim.opt.number = true
+vim.opt.relativenumber = true
+
+-- Always show the signcolumn, otherwise text would shift when displaying error icons
+vim.opt.signcolumn = "yes"
+
+-- Search
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
+-- Configure how new splits should be opened
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+
+-- Tab and indentation defaults
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.smarttab = true
+-- vim.opt.softtabstop = 0 -- optional
+
+-- Highlight the current line for cursor
+vim.opt.cursorline = true
+
+-- Display settings
+vim.opt.wrap = false
+vim.opt.scrolloff = 8 -- Keep 8 lines above/below the cursor
+vim.opt.sidescrolloff = 8 -- Keep 8 columns to the left/right of the cursor
+vim.opt.termguicolors = true -- Enable true color support
+
+-- Save undo history
+vim.opt.undofile = true
+
+-- Split completion settings
+vim.opt.wildmenu = true
+vim.opt.wildignorecase = true
+vim.opt.wildmode = "longest,full,full"
+
+-- Background color
 vim.opt.background = "dark"
-vim.opt.signcolumn = "yes" -- always show the sign column, otherwise it would shift the text each time
+
+-- Disable backup and swap files
+vim.opt.backup = false
+vim.opt.swapfile = false
+vim.opt.writebackup = false
+
+-- Faster update time
+vim.opt.updatetime = 300
+
+-- Column and ruler settings
+vim.opt.ruler = true
+
+-- Global substitution by default
+vim.opt.gdefault = true
+
+-- Disable mouse
+vim.opt.mouse = ""
+
+vim.opt.clipboard = "unnamedplus"

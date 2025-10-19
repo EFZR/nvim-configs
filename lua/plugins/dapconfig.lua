@@ -7,9 +7,14 @@ return {
 			local logger = require("configs.common.logger")
 			local notify = require("configs.common.notify")
 
+			local netcoredbg_path = vim.fn.exepath("netcoredbg")
+			if not netcoredbg_path then
+				error("netcoredbg not found! Install it with :MasonInstall netcoredbg")
+			end
+
 			dap.adapters.coreclr = {
 				type = "executable",
-				command = "netcoredbg",
+				command = netcoredbg_path,
 				args = { "--interpreter=vscode" },
 			}
 
