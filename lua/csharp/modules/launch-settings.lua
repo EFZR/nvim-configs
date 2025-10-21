@@ -1,6 +1,6 @@
 local M = {}
-local logger = require("configs.common.logger")
-local ui = require("configs.common.ui")
+local logger = require("csharp.log")
+local ui = require("csharp.ui")
 
 --- @class DotNetLaunchProfile
 --- @field name string
@@ -47,15 +47,12 @@ local function get_launch_profiles(project_folder)
 	local profiles = {}
 	for profile_name, profile in pairs(launch_settings.profiles) do
 		if profile.commandName ~= "Project" then
-			logger.debug(
-				"Skipping profile.",
-				{
-					feature = "get-launch-profiles",
-					profile_name = profile_name,
-					profile = profile,
-					file_name = file_name,
-				}
-			)
+			logger.debug("Skipping profile.", {
+				feature = "get-launch-profiles",
+				profile_name = profile_name,
+				profile = profile,
+				file_name = file_name,
+			})
 			goto continue
 		end
 

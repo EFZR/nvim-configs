@@ -4,17 +4,12 @@ return {
 
 		config = function()
 			local dap = require("dap")
-			local logger = require("configs.common.logger")
-			local notify = require("configs.common.notify")
-
-			local netcoredbg_path = vim.fn.exepath("netcoredbg")
-			if not netcoredbg_path then
-				error("netcoredbg not found! Install it with :MasonInstall netcoredbg")
-			end
+			local logger = require("csharp.log")
+			local notify = require("csharp.notify")
 
 			dap.adapters.coreclr = {
 				type = "executable",
-				command = netcoredbg_path,
+				command = "/home/efzr/.local/share/nvim/mason/packages/netcoredbg/netcoredbg",
 				args = { "--interpreter=vscode" },
 			}
 
@@ -24,14 +19,20 @@ return {
 					name = "launch - netcoredbg",
 					request = "launch",
 					program = function()
-						-- TODO: Implement launch profile.
 						notify.info("Preparing debugger!")
-						local project_information =
-							require("configs.csharp.features.workspace-information").select_project()
+						local project_information = require("csharp.features.workspace-information").select_project()
 
 						if project_information == nil then
 							logger.error("No project selected", { feature = "debugger" })
 							return
+						end
+
+						local build_succeded =
+							require("csharp.modules.dotnet-cli").build(project_information.Path, { "-c Debug" })
+
+						if not build_succeded then
+							logger.debug("Skip debugging, build failed!", { feature = "debugger" })
+							error("Skip debugging, build failed!")
 						end
 
 						local project_folder_path = vim.fn.fnamemodify(project_information.Path, ":h")

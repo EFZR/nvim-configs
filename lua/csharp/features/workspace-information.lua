@@ -1,8 +1,8 @@
 local M = {}
-local ui = require("configs.common.ui")
-local utils = require("configs.csharp.common.utils")
-local logger = require("configs.common.logger")
-local notify = require("configs.common.notify")
+local ui = require("csharp.ui")
+local utils = require("csharp.utils")
+local logger = require("csharp.log")
+local notify = require("csharp.notify")
 
 --- @class OmnisharpWorkspaceInformation
 --- @field MsBuild OmnisharpMsBuildProjects
@@ -32,6 +32,7 @@ local function get_workspace_information()
 	end
 
 	local request_method = "o#/projects"
+
 	--- @type GetProjectsRequest
 	local request = {
 		ExcludeSourceFiles = true,
@@ -43,7 +44,7 @@ local function get_workspace_information()
 	)
 
 	--- @type LspRequestSyncResponse<OmnisharpWorkspaceInformation>
-	local response = omnisharp_client.request_sync(request_method, request, 1000, buffer)
+	local response = omnisharp_client.request_sync(request_method, request, nil, buffer)
 
 	if response.err ~= nil then
 		logger.error(
