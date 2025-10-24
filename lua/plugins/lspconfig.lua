@@ -47,7 +47,7 @@ return {
 
 			if server == "html" then
 				opts.cmd = { "vscode-html-language-server", "--stdio" }
-				opts.filetypes = { "typescript", "typescriptreact", "typescript.tsx", "html" }
+				opts.filetypes = { "typescriptreact", "html" }
 			end
 
 			if server == "lua_ls" then
@@ -109,6 +109,20 @@ return {
 				}
 			end
 
+			if server == "ts_ls" then
+				local vue_language_server_path = vim.fn.stdpath("data")
+					.. "/mason/packages/vue-language-server/node_modules/@vue/language-server"
+				opts = {
+					init_options = {
+						plugins = {
+							name = "@vue/typescript-plugin",
+							location = vue_language_server_path,
+							languages = { "vue" },
+						},
+					},
+				}
+			end
+
 			vim.lsp.config(server, opts)
 		end
 
@@ -140,12 +154,11 @@ return {
 		vim.diagnostic.config(default_diagnostic_config)
 
 		for _, sign in ipairs(vim.tbl_get(vim.diagnostic.config(), "signs", "values") or {}) do
-			vim.api.nvim_set_hl(0, sign.name, { link = sign.name })
+			vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = sign.name })
 		end
 
 		vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-		vim.lsp.handlers["textDocument/signatureHelp"] =
-			vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
+		vim.lsp.handlers["textDocument/signalp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
 		require("lspconfig.ui.windows").default_options.border = "rounded"
 	end,
 }

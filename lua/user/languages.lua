@@ -1,12 +1,21 @@
 local M = {}
 
 M.servers = {
-	"lua_ls",
-	"omnisharp",
+	"bashls",
 	"cssls",
+	"dockerls",
+	"omnisharp",
 	"html",
 	"jsonls",
+	"lua_ls",
 	"marksman",
+	"pyright",
+	-- "sqls", -- commented out as in your original snippet
+	"tailwindcss",
+	"ts_ls",
+	"vue_ls",
+	"yamlls",
+	"emmet_ls",
 }
 
 M.parsers = {
@@ -21,7 +30,7 @@ M.parsers = {
 	"css",
 	"json",
 	"toml",
-	"python"
+	"python",
 }
 
 M.fmtNLint = {
@@ -30,6 +39,8 @@ M.fmtNLint = {
 	"csharpier",
 	"markdownlint",
 	"eslint_d",
+	"gofmt",
+	"sqlfmt",
 }
 
 M.debugger = {

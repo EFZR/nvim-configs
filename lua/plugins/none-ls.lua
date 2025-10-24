@@ -9,7 +9,12 @@ return {
 	dependencies = {
 		{
 			"nvimtools/none-ls.nvim",
-			dependencies = "nvim-lua/plenary.nvim",
+
+			dependencies = {
+				"nvimtools/none-ls-extras.nvim",
+				"nvim-lua/plenary.nvim",
+			},
+
 			keys = {
 				{
 					"<leader>lf",
@@ -23,11 +28,11 @@ return {
 				-- local diagnostics = null_ls.builtins.diagnostics
 
 				null_ls.setup({
-					debug = false,
 					sources = {
-						formatting.prettier,
 						formatting.stylua,
 						formatting.csharpier,
+						formatting.markdownlint,
+						formatting.gofmt,
 					},
 				})
 			end,

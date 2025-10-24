@@ -10,7 +10,7 @@ return {
 			dap.adapters.coreclr = {
 				type = "executable",
 				command = "/home/efzr/.local/share/nvim/mason/packages/netcoredbg/netcoredbg",
-				args = { "--interpreter=vscode" },
+				args = { "--interpreter=vscode", "--engineLogging=/tmp/vscode_engine.log" },
 			}
 
 			dap.configurations.cs = {
