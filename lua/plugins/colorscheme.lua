@@ -88,7 +88,7 @@ local theme_specs = {
 			vim.cmd.colorscheme("everforest")
 		end,
 	},
-	nord = {
+	nordfox = {
 		"shaunsingh/nord.nvim",
 		lazy = false,
 		priority = 1000,
@@ -136,6 +136,14 @@ local theme_specs = {
 				end,
 			})
 			vim.cmd.colorscheme("monokai-pro")
+		end,
+	},
+	["flexoki-light"] = {
+		"kepano/flexoki-neovim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			vim.cmd.colorscheme("flexoki-light")
 		end,
 	},
 }

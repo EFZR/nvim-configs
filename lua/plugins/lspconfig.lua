@@ -112,14 +112,19 @@ return {
 			if server == "ts_ls" then
 				local vue_language_server_path = vim.fn.stdpath("data")
 					.. "/mason/packages/vue-language-server/node_modules/@vue/language-server"
+
+				local vue_plugin = {
+					name = "@vue/typescript-plugin",
+					location = vue_language_server_path,
+					languages = { "vue" },
+					configNamespace = "typescript",
+				}
+
 				opts = {
 					init_options = {
-						plugins = {
-							name = "@vue/typescript-plugin",
-							location = vue_language_server_path,
-							languages = { "vue" },
-						},
+						plugins = { vue_plugin },
 					},
+					filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
 				}
 			end
 
@@ -154,7 +159,7 @@ return {
 		vim.diagnostic.config(default_diagnostic_config)
 
 		for _, sign in ipairs(vim.tbl_get(vim.diagnostic.config(), "signs", "values") or {}) do
-			vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = sign.name })
+			vim.api.nvim_set_hl(0, sign.name, { link = sign.name })
 		end
 
 		vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
