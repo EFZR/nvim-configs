@@ -36,9 +36,6 @@ vim.opt.wildmenu = true
 vim.opt.wildignorecase = true
 vim.opt.wildmode = "longest,full,full"
 
--- Background color
-vim.opt.background = "dark"
-
 -- Disable backup and swap files
 vim.opt.backup = false
 vim.opt.swapfile = false

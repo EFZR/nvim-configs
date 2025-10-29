@@ -1,12 +1,12 @@
--- Loads the Omarchy theme file but filters out LazyVim references
+-- Parse the current Omarchy theme and apply to your non-LazyVim setup
 local theme_file = vim.fn.expand("~/.config/omarchy/current/theme/neovim.lua")
 local colorscheme_to_load = nil
 
--- Read the Omarchy theme file to extract colorscheme
+-- Safely load and extract colorscheme from Omarchy file
 if vim.fn.filereadable(theme_file) == 1 then
-	local ok, theme_plugins = pcall(dofile, theme_file)
-	if ok and type(theme_plugins) == "table" then
-		for _, plugin in ipairs(theme_plugins) do
+	local ok, omarchy_theme = pcall(dofile, theme_file)
+	if ok and type(omarchy_theme) == "table" then
+		for _, plugin in ipairs(omarchy_theme) do
 			if
 				type(plugin) == "table"
 				and plugin[1] == "LazyVim/LazyVim"
@@ -20,7 +20,7 @@ if vim.fn.filereadable(theme_file) == 1 then
 	end
 end
 
--- Map Omarchy colorscheme names to actual plugins
+-- Mapping from Omarchy colorscheme → your Neovim theme setup
 local theme_specs = {
 	catppuccin = {
 		"catppuccin/nvim",
@@ -32,26 +32,37 @@ local theme_specs = {
 			vim.cmd.colorscheme("catppuccin")
 		end,
 	},
+
 	["catppuccin-latte"] = {
 		"catppuccin/nvim",
 		name = "catppuccin",
 		lazy = false,
 		priority = 1000,
 		config = function()
-			require("catppuccin").setup({
-				flavour = "latte",
-			})
-			vim.cmd.colorscheme("catppuccin-latte")
+			require("catppuccin").setup({ flavour = "latte" })
+			vim.cmd.colorscheme("catppuccin")
 		end,
 	},
-	tokyonight = {
-		"folke/tokyonight.nvim",
+
+	everforest = {
+		"neanias/everforest-nvim",
 		lazy = false,
 		priority = 1000,
 		config = function()
-			vim.cmd.colorscheme("tokyonight")
+			require("everforest").setup({ background = "soft" })
+			vim.cmd.colorscheme("everforest")
 		end,
 	},
+
+	["flexoki-light"] = {
+		"kepano/flexoki-neovim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			vim.cmd.colorscheme("flexoki-light")
+		end,
+	},
+
 	gruvbox = {
 		"ellisonleao/gruvbox.nvim",
 		lazy = false,
@@ -60,6 +71,7 @@ local theme_specs = {
 			vim.cmd.colorscheme("gruvbox")
 		end,
 	},
+
 	kanagawa = {
 		"rebelot/kanagawa.nvim",
 		lazy = false,
@@ -68,34 +80,25 @@ local theme_specs = {
 			vim.cmd.colorscheme("kanagawa")
 		end,
 	},
-	["rose-pine"] = {
-		"rose-pine/neovim",
-		name = "rose-pine",
+
+	matteblack = {
+		"tahayvr/matteblack.nvim",
 		lazy = false,
 		priority = 1000,
 		config = function()
-			vim.cmd.colorscheme("rose-pine")
+			vim.cmd.colorscheme("matteblack")
 		end,
 	},
-	everforest = {
-		"neanias/everforest-nvim",
-		lazy = false,
-		priority = 1000,
-		config = function()
-			require("everforest").setup({
-				background = "soft",
-			})
-			vim.cmd.colorscheme("everforest")
-		end,
-	},
+
 	nordfox = {
-		"shaunsingh/nord.nvim",
+		"EdenEast/nightfox.nvim",
 		lazy = false,
 		priority = 1000,
 		config = function()
-			vim.cmd.colorscheme("nord")
+			vim.cmd.colorscheme("nordfox")
 		end,
 	},
+
 	bamboo = {
 		"ribru17/bamboo.nvim",
 		lazy = false,
@@ -105,14 +108,7 @@ local theme_specs = {
 			require("bamboo").load()
 		end,
 	},
-	matteblack = {
-		"tahayvr/matteblack.nvim",
-		lazy = false,
-		priority = 1000,
-		config = function()
-			vim.cmd.colorscheme("matteblack")
-		end,
-	},
+
 	["monokai-pro"] = {
 		"gthelding/monokai-pro.nvim",
 		lazy = false,
@@ -138,20 +134,34 @@ local theme_specs = {
 			vim.cmd.colorscheme("monokai-pro")
 		end,
 	},
-	["flexoki-light"] = {
-		"kepano/flexoki-neovim",
+
+	["rose-pine-dawn"] = {
+		"rose-pine/neovim",
+		name = "rose-pine",
 		lazy = false,
 		priority = 1000,
 		config = function()
-			vim.cmd.colorscheme("flexoki-light")
+			vim.cmd.colorscheme("rose-pine-dawn")
+		end,
+	},
+
+	["tokyonight-night"] = {
+		"folke/tokyonight.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			vim.cmd.colorscheme("tokyonight-night")
 		end,
 	},
 }
 
--- Return the appropriate theme spec based on what Omarchy selected
+-- Return the proper theme or fallback
 if colorscheme_to_load and theme_specs[colorscheme_to_load] then
 	return theme_specs[colorscheme_to_load]
 else
-	-- Fallback to bamboo theme for osaka-jade (which doesn't use LazyVim wrapper)
+	vim.notify(
+		string.format("Omarchy theme not found (%s), defaulting to bamboo", tostring(colorscheme_to_load)),
+		vim.log.levels.WARN
+	)
 	return theme_specs["bamboo"]
 end
