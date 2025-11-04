@@ -104,7 +104,13 @@ local theme_specs = {
 		lazy = false,
 		priority = 1000,
 		config = function()
-			require("bamboo").setup({})
+			require("bamboo").setup({
+				style = "multiplex",
+				highlights = {
+					Normal = { bg = "#121F1A" }, -- Replace with your desired hex code for background
+					NormalNC = { bg = "#121F1A" },
+				},
+			})
 			require("bamboo").load()
 		end,
 	},

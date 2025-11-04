@@ -31,6 +31,7 @@ M.parsers = {
 	"json",
 	"toml",
 	"python",
+	"http",
 }
 
 M.fmtNLint = {
