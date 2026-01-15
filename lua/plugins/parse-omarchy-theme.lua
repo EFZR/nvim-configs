@@ -159,6 +159,25 @@ local theme_specs = {
 			vim.cmd.colorscheme("tokyonight-night")
 		end,
 	},
+
+	["hackerman"] = {
+		"bjarneo/hackerman.nvim",
+		dependencies = { "bjarneo/aether.nvim" }, -- Ensure aether is loaded first
+		lazy = false,
+		priority = 1000,
+		config = function()
+			vim.cmd.colorscheme("hackerman")
+		end,
+	},
+
+	["ethereal"] = {
+		"bjarneo/ethereal.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			vim.cmd.colorscheme("ethereal")
+		end,
+	},
 }
 
 -- Return the proper theme or fallback
