@@ -4,6 +4,8 @@ return {
 		{ "hrsh7th/cmp-nvim-lsp" },
 		{ "hrsh7th/cmp-buffer" },
 		{ "saadparwaiz1/cmp_luasnip" },
+		{ "hrsh7th/cmp-path" },
+		{ "hrsh7th/cmp-cmdline" },
 	},
 	event = "InsertEnter",
 	config = function()
@@ -29,6 +31,7 @@ return {
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },
 				{ name = "luasnip" },
+				{ name = "path" },
 				{ name = "buffer" },
 			}),
 			window = {
@@ -42,6 +45,24 @@ return {
 			experimental = {
 				ghost_text = false,
 			},
+		})
+
+		-- `/` and `?` → buffer completion
+		cmp.setup.cmdline({ "/", "?" }, {
+			mapping = cmp.mapping.preset.cmdline(),
+			sources = {
+				{ name = "buffer" },
+			},
+		})
+
+		-- `:` → path + command completion
+		cmp.setup.cmdline(":", {
+			mapping = cmp.mapping.preset.cmdline(),
+			sources = cmp.config.sources({
+				{ name = "path" },
+			}, {
+				{ name = "cmdline" },
+			}),
 		})
 	end,
 }
