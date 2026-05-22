@@ -99,10 +99,10 @@ vim.api.nvim_create_autocmd("FileType", {
 	pattern = "markdown",
 	callback = function()
 		vim.opt_local.expandtab = true
-		vim.opt_local.shiftwidth = 3
-		vim.opt_local.tabstop = 3
-		vim.opt_local.softtabstop = 3
+		vim.opt_local.shiftwidth = 2
+		vim.opt_local.tabstop = 2
+		vim.opt_local.softtabstop = 2
 		vim.opt_local.smarttab = true
 	end,
-	desc = "Set indentation to 3 spaces for Markdown files",
+	desc = "Set indentation to 2 spaces for Markdown files",
 })

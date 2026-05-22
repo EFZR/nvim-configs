@@ -16,6 +16,7 @@ M.servers = {
 	"vue_ls",
 	"yamlls",
 	"emmet_ls",
+	"clangd",
 }
 
 M.parsers = {
@@ -31,21 +32,36 @@ M.parsers = {
 	"json",
 	"toml",
 	"python",
-	"http",
 }
 
-M.fmtNLint = {
-	"prettier",
+M.formatters = {
+	"prettierd",
 	"stylua",
 	"csharpier",
-	"markdownlint",
-	"eslint_d",
 	"gofmt",
 	"sqlfmt",
+	"ruff",
+}
+
+M.linters = {
+	"eslint_d",
+	"markdownlint",
+}
+
+-- Only packages that exist in the Mason registry
+-- gofmt ships with Go; sqlfmt must be installed manually
+M.tools = {
+	"prettierd",
+	"stylua",
+	"csharpier",
+	"ruff",
+	"eslint_d",
+	"markdownlint",
 }
 
 M.debugger = {
 	"coreclr",
+	"js",
 }
 
 return M

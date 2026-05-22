@@ -11,6 +11,13 @@ return {
 		},
 	},
 	{
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		dependencies = { "williamboman/mason.nvim" },
+		opts = {
+			ensure_installed = require("user.languages").tools,
+		},
+	},
+	{
 		"jay-babu/mason-nvim-dap.nvim",
 		dependencies = { "williamboman/mason.nvim" },
 		config = function()

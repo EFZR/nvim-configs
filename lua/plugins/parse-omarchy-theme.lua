@@ -8,10 +8,10 @@ if vim.fn.filereadable(theme_file) == 1 then
 	if ok and type(omarchy_theme) == "table" then
 		for _, plugin in ipairs(omarchy_theme) do
 			if
-				type(plugin) == "table"
-				and plugin[1] == "LazyVim/LazyVim"
-				and plugin.opts
-				and plugin.opts.colorscheme
+					type(plugin) == "table"
+					and plugin[1] == "LazyVim/LazyVim"
+					and plugin.opts
+					and plugin.opts.colorscheme
 			then
 				colorscheme_to_load = plugin.opts.colorscheme
 				break
@@ -178,6 +178,52 @@ local theme_specs = {
 			vim.cmd.colorscheme("ethereal")
 		end,
 	},
+
+	["white"] = {
+		"bjarneo/white.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			vim.cmd.colorscheme("white")
+		end,
+	},
+
+	["vantablack"] = {
+		"bjarneo/vantablack.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			vim.cmd.colorscheme("vantablack")
+		end,
+	},
+
+	["miasma"] = {
+		"xero/miasma.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			vim.cmd.colorscheme("miasma")
+		end,
+	},
+
+	["lumon"] = {
+		"omacom-io/lumon.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			vim.cmd.colorscheme("lumon")
+		end,
+	},
+
+	["retro-82"] = {
+		"OldJobobo/retro-82.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			vim.cmd.colorscheme("retro-82")
+		end,
+	},
+
 }
 
 -- Return the proper theme or fallback

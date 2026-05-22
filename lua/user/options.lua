@@ -24,8 +24,8 @@ vim.opt.cursorline = true
 
 -- Display settings
 vim.opt.wrap = false
-vim.opt.scrolloff = 8 -- Keep 8 lines above/below the cursor
-vim.opt.sidescrolloff = 8 -- Keep 8 columns to the left/right of the cursor
+vim.opt.scrolloff = 5
+vim.opt.sidescrolloff = 5
 vim.opt.termguicolors = true -- Enable true color support
 
 -- Save undo history
@@ -43,6 +43,7 @@ vim.opt.writebackup = false
 
 -- Faster update time
 vim.opt.updatetime = 300
+vim.opt.timeoutlen = 300
 
 -- Column and ruler settings
 vim.opt.ruler = true

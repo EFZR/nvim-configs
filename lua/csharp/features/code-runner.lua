@@ -1,5 +1,6 @@
 local M = {}
 local utils = require("csharp.utils")
+local logger = require("csharp.log")
 
 --- @async
 local function _execute()

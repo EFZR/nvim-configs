@@ -17,13 +17,21 @@ return {
 			keymap("n", "gD", "<cmd>Telescope lsp_type_definitions<CR>", opts)
 			keymap("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
 			keymap("n", "gI", "<cmd>Telescope lsp_implementations<CR>", opts)
-			keymap("n", "K", vim.lsp.buf.hover, opts)
+			keymap("n", "K", function()
+				vim.lsp.buf.hover({ border = "rounded" })
+			end, opts)
 			keymap("n", "gl", vim.diagnostic.open_float, opts)
-			keymap("n", "]d", vim.diagnostic.goto_next, opts)
-			keymap("n", "[d", vim.diagnostic.goto_prev, opts)
+			keymap("n", "]d", function()
+				vim.diagnostic.jump({ count = 1 })
+			end, opts)
+			keymap("n", "[d", function()
+				vim.diagnostic.jump({ count = -1 })
+			end, opts)
 			keymap("n", "<leader>la", vim.lsp.buf.code_action, opts)
 			keymap("n", "<leader>lr", vim.lsp.buf.rename, opts)
-			keymap("n", "<leader>ls", vim.lsp.buf.signature_help, opts)
+			keymap("n", "<leader>ls", function()
+				vim.lsp.buf.signature_help({ border = "rounded" })
+			end, opts)
 			keymap("n", "<leader>li", "<cmd>LspInfo<CR>", opts)
 		end
 
@@ -129,6 +137,7 @@ return {
 			end
 
 			vim.lsp.config(server, opts)
+			vim.lsp.enable(server)
 		end
 
 		-- Ui stuff
@@ -162,8 +171,6 @@ return {
 			vim.api.nvim_set_hl(0, sign.name, { link = sign.name })
 		end
 
-		vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-		vim.lsp.handlers["textDocument/signalp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
 		require("lspconfig.ui.windows").default_options.border = "rounded"
 	end,
 }

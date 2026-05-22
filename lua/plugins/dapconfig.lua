@@ -13,6 +13,51 @@ return {
 				args = { "--interpreter=vscode", "--engineLogging=/tmp/vscode_engine.log" },
 			}
 
+			-- JavaScript / TypeScript (js-debug-adapter via Mason)
+			local js_debug_path = vim.fn.expand("$MASON/packages/js-debug-adapter/js-debug/src/dapDebugServer.js")
+
+			dap.adapters["pwa-node"] = {
+				type = "server",
+				host = "localhost",
+				port = "${port}",
+				executable = {
+					command = "node",
+					args = { js_debug_path, "${port}" },
+				},
+			}
+
+			for _, lang in ipairs({ "javascript", "typescript", "javascriptreact", "typescriptreact" }) do
+				dap.configurations[lang] = {
+					{
+						type = "pwa-node",
+						request = "launch",
+						name = "Launch file",
+						program = "${file}",
+						cwd = "${workspaceFolder}",
+						sourceMaps = true,
+						resolveSourceMapLocations = { "${workspaceFolder}/**", "!**/node_modules/**" },
+					},
+					{
+						type = "pwa-node",
+						request = "attach",
+						name = "Attach to process",
+						processId = require("dap.utils").pick_process,
+						cwd = "${workspaceFolder}",
+						sourceMaps = true,
+					},
+					{
+						type = "pwa-node",
+						request = "launch",
+						name = "Launch with tsx (ts-node)",
+						runtimeExecutable = "node",
+						runtimeArgs = { "--import", "tsx" },
+						program = "${file}",
+						cwd = "${workspaceFolder}",
+						sourceMaps = true,
+					},
+				}
+			end
+
 			dap.configurations.cs = {
 				{
 					type = "coreclr",

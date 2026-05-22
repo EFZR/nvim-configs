@@ -1,24 +1,19 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
-	event = "VeryLazy",
+	branch = "main",
+	lazy = false,
 	build = ":TSUpdate",
 	config = function()
-		---@diagnostic disable-next-line: missing-fields
-		require("nvim-treesitter.configs").setup({
-			ensure_installed = require("user.languages").parsers,
-			context_commentstring = {
-				enable = true,
-			},
-			highlight = {
-				enable = true,
-			},
-			incremental_selection = {
-				enable = true,
-			},
-			indent = {
-				enable = true,
-				additional_vim_regex_highlighting = false,
-			},
+		require("nvim-treesitter").setup()
+		require("nvim-treesitter").install(require("user.languages").parsers)
+
+		vim.api.nvim_create_autocmd("FileType", {
+			callback = function(args)
+				local ok = pcall(vim.treesitter.start, args.buf)
+				if ok then
+					vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+				end
+			end,
 		})
 	end,
 }
