@@ -46,7 +46,7 @@ mv ~/.config/nvim ~/.config/nvim.bak
 mv ~/.local/share/nvim ~/.local/share/nvim.bak
 
 # Clone this repo
-git clone https://github.com/<your-username>/nvim ~/.config/nvim
+git clone https://github.com/EFZR/nvim-configs.git
 
 # Launch Neovim — Lazy.nvim will install everything automatically
 nvim
