@@ -41,6 +41,12 @@ return {
 			return capabilities
 		end
 
+		-- TypeScript clásico 5.x fijo (independiente de Mason).
+		-- Mason instala `typescript@7` (compilador nativo, sin tsserver) que rompe
+		-- ts_ls y vue_ls. Apuntamos ambos a este SDK estable: instalar con
+		--   npm install --prefix ~/.local/share/nvim/ts-sdk typescript@5
+		local ts_sdk = vim.fs.normalize(vim.fn.stdpath("data") .. "/ts-sdk/node_modules/typescript/lib")
+
 		local servers = require("user.languages").servers
 		for _, server in pairs(servers) do
 			local opts = {
@@ -131,9 +137,17 @@ return {
 				opts = {
 					init_options = {
 						plugins = { vue_plugin },
+						-- Fuerza tsserver clásico 5.x en lugar del TS 7 nativo de Mason.
+						tsserver = { path = ts_sdk .. "/tsserver.js" },
 					},
 					filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
 				}
+			end
+
+			if server == "vue_ls" then
+				-- vue-language-server hace require('typescript'); sin --tsdk cae en el
+				-- TS 7 nativo de Mason y crashea (ts.server.protocol == undefined).
+				opts.cmd = { "vue-language-server", "--stdio", "--tsdk=" .. ts_sdk }
 			end
 
 			vim.lsp.config(server, opts)
