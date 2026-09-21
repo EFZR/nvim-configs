@@ -18,6 +18,7 @@ return {
 				cs = { "csharpier" },
 				python = { "ruff_format" },
 				go = { "gofmt" },
+				rust = { "rustfmt" },
 				sql = { "sqlfmt" },
 				markdown = { "prettierd" },
 				javascript = { "prettierd" },

@@ -10,6 +10,7 @@ M.servers = {
 	"lua_ls",
 	"marksman",
 	"pyright",
+	"rust_analyzer",
 	-- "sqls", -- commented out as in your original snippet
 	"tailwindcss",
 	"ts_ls",
@@ -32,6 +33,7 @@ M.parsers = {
 	"json",
 	"toml",
 	"python",
+	"rust",
 }
 
 M.formatters = {
@@ -41,6 +43,7 @@ M.formatters = {
 	"gofmt",
 	"sqlfmt",
 	"ruff",
+	"rustfmt", -- viene con rustup, no está en Mason
 }
 
 M.linters = {
@@ -62,6 +65,7 @@ M.tools = {
 M.debugger = {
 	"coreclr",
 	"js",
+	"codelldb",
 }
 
 return M

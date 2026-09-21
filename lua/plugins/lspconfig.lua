@@ -111,6 +111,24 @@ return {
 				opts.filetypes = { "cs", "vb", "csproj", "sln", "slnx", "props", "csx", "targets" }
 			end
 
+			if server == "rust_analyzer" then
+				opts.settings = {
+					["rust-analyzer"] = {
+						cargo = {
+							allFeatures = true,
+							buildScripts = { enable = true },
+						},
+						procMacro = { enable = true },
+						-- Usa clippy en vez de `cargo check` para diagnósticos más ricos.
+						check = { command = "clippy" },
+						inlayHints = {
+							parameterHints = { enable = true },
+							typeHints = { enable = true },
+						},
+					},
+				}
+			end
+
 			if server == "nil_ls" then
 				opts.cmd = { "nil" }
 				opts.filetypes = { "nix" }

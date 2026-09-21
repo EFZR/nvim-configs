@@ -58,6 +58,43 @@ return {
 				}
 			end
 
+			-- Rust / C / C++ (codelldb via Mason)
+			dap.adapters.codelldb = {
+				type = "server",
+				port = "${port}",
+				executable = {
+					command = vim.fn.expand("$MASON/bin/codelldb"),
+					args = { "--port", "${port}" },
+				},
+			}
+
+			dap.configurations.rust = {
+				{
+					type = "codelldb",
+					request = "launch",
+					name = "launch - cargo build",
+					program = function()
+						vim.fn.system({ "cargo", "build" })
+						if vim.v.shell_error ~= 0 then
+							error("Skip debugging, cargo build failed!")
+						end
+						local target = vim.fn.getcwd() .. "/target/debug/"
+						return vim.fn.input("Path to executable: ", target, "file")
+					end,
+					cwd = "${workspaceFolder}",
+					stopOnEntry = false,
+					sourceLanguages = { "rust" },
+				},
+				{
+					type = "codelldb",
+					request = "attach",
+					name = "attach - codelldb",
+					pid = require("dap.utils").pick_process,
+					cwd = "${workspaceFolder}",
+					sourceLanguages = { "rust" },
+				},
+			}
+
 			dap.configurations.cs = {
 				{
 					type = "coreclr",
